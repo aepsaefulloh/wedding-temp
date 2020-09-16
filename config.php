@@ -7,10 +7,10 @@ define('ROOT_PATH', 'C:/laragon/www/project/wedding');
 define('ROOT_URL', 'http://localhost/project/wedding');
 
 
-define( "CACHE_URL", ROOT_URL."/cache" );
+// define( "CACHE_URL", ROOT_URL."/cache" );
 
-define( "CMS_PATH", ROOT_PATH."/cms" );
-define( "CMS_URL", ROOT_URL."/cms" );
+// define( "CMS_PATH", ROOT_PATH."/cms" );
+// define( "CMS_URL", ROOT_URL."/cms" );
 
 
 ?>
