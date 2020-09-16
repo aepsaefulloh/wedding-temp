@@ -279,10 +279,10 @@ require_once ROOT_PATH.'/lib/mysqlDao.php';
                     <div class="clear"></div>
                 </div>
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1982.516183129056!2d106.8372028!3d-6.3898252!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ebf24129d74d%3A0x5c343cbae6a45514!2sJl.%20Majapahit%20II%20No.174%2C%20Mekar%20Jaya%2C%20Kec.%20Sukmajaya%2C%20Kota%20Depok%2C%20Jawa%20Barat%2016411!5e0!3m2!1sen!2sid!4v1597803321928!5m2!1sen!2sid"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31720.496663177168!2d106.8384633!3d-6.385989599999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ebf4c7b51db9%3A0x808b8848fd835be0!2sWoow%20Coffee%20%26%20Kitchen!5e0!3m2!1sen!2sid!4v1600245715058!5m2!1sen!2sid"
                     frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
                 </iframe>
-                <a href="https://goo.gl/maps/kDwR9ZTQVR9jL8MX7" target="_blank">
+                <a href="https://goo.gl/maps/11p8tBdJ9iWd6NSh7" target="_blank">
                     <div class="location-5 wow zoomIn">
                         Google
                         <span class="location-6">
@@ -339,7 +339,7 @@ require_once ROOT_PATH.'/lib/mysqlDao.php';
                     $savestatus = 1;
                 }
                 ?>
-            <form action="<?php echo ROOT_URL?>/index.php" method="post">
+            <form action="<?php echo ROOT_URL?>/thanks.php" method="post">
                 <input type='hidden' name='ACT' value='ADD'>
                 <div class="guest-1">
                     <center>
