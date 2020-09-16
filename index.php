@@ -29,7 +29,6 @@ require_once ROOT_PATH.'/lib/mysqlDao.php';
     <link href="<?php echo ROOT_URL?>/assets/css/styles.css?<?php echo rand()?>" rel="stylesheet">
     <!-- <link href="<?php echo ROOT_URL?>/assets/css/fontawesome.min.css?<?php echo rand()?>" rel="stylesheet"> -->
 
-
 </head>
 
 <body>
@@ -49,7 +48,7 @@ require_once ROOT_PATH.'/lib/mysqlDao.php';
                     <div class="hide" onClick="play()"> Buka Undangan </div> &nbsp;
                     <br>
                     <a href="">
-                        &copy; 2020 <a class='footer' href="https://aeradev.com/">Aep Saefulloh. All Right Reserved.</a>
+                        &copy; 2020 <a class='footer' href="#">Rafika Devilia. All Right Reserved.</a>
                     </a>
                 </center>
             </div>
@@ -307,8 +306,7 @@ require_once ROOT_PATH.'/lib/mysqlDao.php';
         ?>
             <div class='story-3-1 wow zoomIn'>
 
-                <img src='<?php echo ROOT_URL?>/assets/img/gallery/<?php echo $i ?>.jpg?<?php echo rand()?>'>
-            </div>
+                <img src='<?php echo ROOT_URL?>/assets/img/gallery/<?php echo $i ?>.jpg?<?php echo rand()?>'></div>
 
             <?php
             }
@@ -325,25 +323,45 @@ require_once ROOT_PATH.'/lib/mysqlDao.php';
             Our Guestbook
         </div>
         <div id="guest-1" class="wow zoomIn">
-            <form action="" method="post">
+            <?php 
+                $var['ACT'] = isset($_REQUEST['ACT'])?$_REQUEST['ACT']:'';
+                $savestatus = 0;
+                if($var['ACT'] == 'ADD'){
+                    $var['FULLNAME'] = isset($_REQUEST['FULLNAME'])?$_REQUEST['FULLNAME']:'';
+                    $var['RELATIONSHIP'] = isset($_REQUEST['RELATIONSHIP'])?$_REQUEST['RELATIONSHIP']:'';    
+                    $var['STATUS'] = isset($_REQUEST['STATUS'])?$_REQUEST['STATUS']:'';
+                    $var['DESCRIPTION'] = isset($_REQUEST['DESCRIPTION'])?$_REQUEST['DESCRIPTION']:'';
+                    $var['CREATE_TIMESTAMP']=date('Y-m-d H:i:s');
+
+                    $result = saveRecord('tbl_comment', $var);
+                    //  echo $result['SQL'];
+                    $savestatus = 1;
+                }
+                ?>
+            <form action="<?php echo ROOT_URL?>/index.php" method="post">
+                <input type='hidden' name='ACT' value='ADD'>
                 <div class="guest-1">
                     <center>
-                        <input class="wow zoomIn" type="text" name="yourname" placeholder="Masukkan Nama" value=""
-                            required><br>
-                        <input class="wow zoomIn" type="text" name="who"
+                        <input class="wow zoomIn" type="text" name="FULLNAME" placeholder="Masukkan Nama"><br>
+                        <input class="wow zoomIn" type="text" name="RELATIONSHIP"
                             placeholder="Siapakah kamu? Contoh: Keluarga"><br>
-                        <textarea class="wow zoomIn" type="text" name="comment" placeholder="Masukkan Pesan"
-                            required></textarea>
+                        <textarea class="wow zoomIn" type="text" name="DESCRIPTION"
+                            placeholder="Masukkan Pesan"></textarea>
                     </center>
                 </div>
                 <div id="radio">
-                    <input class="checkbox" type="radio" name="rsvp" value="hadir" checked>Hadir
+                    <!-- <input class="checkbox" type="radio" name="STATUS" value="hadir" checked>Hadir
                     <br>
-                    <input class="checkbox" type="radio" name="rsvp" value="tidak">Tidak Hadir
+                    <input class="checkbox" type="radio" name="STATUS" value="tidak">Tidak Hadir -->
+                    <input class="checkbox" type="radio" name="STATUS" value="hadir"
+                        <?php if(['STATUS']=='1') echo 'checked'?>> Hadir
+                    <br>
+                    <input class="checkbox" type="radio" name="STATUS" value="tidak hadir"
+                        <?php if(['STATUS']=='0') echo 'checked'?>> Tidak Hadir
                 </div>
                 <center>
                     <div class="guest-1">
-                        <button class="buttons wow zoomIn" type="submit" name="tes" onClick="hidden()">Kirim</button>
+                        <button class="buttons wow zoomIn" type="submit">Kirim</button>
                     </div>
                 </center>
             </form>
@@ -351,19 +369,27 @@ require_once ROOT_PATH.'/lib/mysqlDao.php';
                 <div class="container">
                     <div class="comment-1">
                         <div class='comment-1-1'>Comment Here..</div>
+                        <?php
+                            $var['LIMIT'] = 30;
+                            $list = getRecord('tbl_comment', $var);
+                            foreach($list['RESULT'] as $list){
+                        ?>
                         <div class='comment-2'>
-                            <div class='comment-3'>Nama
-                                <span class='comment-4'>text</span>
+                            <div class='comment-3'><?php echo $list['FULLNAME'] ?>
+                                <span class='comment-4'><?php echo $list['RELATIONSHIP'] ?></span>
                             </div>
-                            <div class='comment-5'>Descriptiion</div>
+                            <div class='comment-5'><?php echo $list['DESCRIPTION'] ?></div>
                         </div>
+                        <?php
+                            }
+                        ?>
 
                     </div>
                 </div>
             </div>
             <center>
                 <br>
-                &copy; 2020 <a class='footer' href="https://aeradev.com/">Aep Saefulloh</a>. All Right Reserved.
+                &copy; 2020 <a class='footer' href="#">Rafika Devilia</a>. All Right Reserved.
             </center>
         </div>
         <div class="clear"></div>
